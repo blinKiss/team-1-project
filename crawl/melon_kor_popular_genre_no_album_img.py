@@ -25,27 +25,16 @@ urls = {
 
 
 def get_chart_data(url):
-    driver = webdriver.Chrome(ChromeDriverManager().install())
     response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
     soup = BeautifulSoup(response.text, 'html.parser')
     chart_data = []
 
-    for i, tr in enumerate(soup.select('#lst50, #lst100')):
+    for tr in soup.select('#lst50, #lst100'):
         rank = tr.select_one('.rank').text.strip()
         title = tr.select_one('.ellipsis.rank01').text.strip()
         artist = tr.select_one('.ellipsis.rank02 a').text.strip()
         album = tr.select_one('.ellipsis.rank03').text.strip()
-
-        # 큰 이미지 가져오기
-        driver.get(url)
-        song_info = driver.find_elements(By.CLASS_NAME, 'bg_album_frame')
-        song_info[i].click()
-        detail_page = driver.page_source
-        # print(detail_page)
-        bsoup = BeautifulSoup(detail_page, 'html.parser')
-        album_img = bsoup.select_one('img[src*="/album/images/"]')
-        album_img_url = album_img['src']
-        chart_data.append([rank, title, artist, album, album_img_url])
+        chart_data.append([rank, title, artist, album])
 
     return chart_data
 
@@ -53,13 +42,12 @@ def get_chart_data(url):
 def save_csv(genre, chart_data):
     with open(f'./team-1-project/data/{genre}.csv', 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['순위', '곡명', '아티스트', '앨범', '앨범이미지'])
+        writer.writerow(['순위', '곡명', '아티스트', '앨범'])
         writer.writerows(chart_data)
 
 
 def main():
     for genre, url in urls.items():
-
         chart_data = get_chart_data(url)
         save_csv(genre, chart_data)
 
