@@ -1,3 +1,7 @@
+from datetime import datetime, timedelta
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.service import Service
 import selenium
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -11,33 +15,78 @@ import csv
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
 import re
-import urllib.parse
 
-# url = 'https://www.youtube.com/results?search_query=WSG%EC%9B%8C%EB%84%88%EB%B9%84+(%EA%B0%80%EC%95%BCG)+%EA%B7%B8%EB%95%8C+%EA%B7%B8+%EC%88%9C%EA%B0%84+%EA%B7%B8%EB%8C%80%EB%A1%9C+(%EA%B7%B8%EA%B7%B8%EA%B7%B8)'
-# response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
-# soup = BeautifulSoup(response.text, 'html.parser')
-# print(soup.find('<span id="text" class="style-scope ytd-thumbnail-overlay-time-status-renderer" aria-label="3분 46초">').get_text)
-
-
-# <span id="text" class="style-scope ytd-thumbnail-overlay-time-status-renderer" aria-label="3분 46초">
-#   3:46
-# </span>
-# WebDriver 설정
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
-# URL 접근
-url = 'https://www.youtube.com/results?search_query=WSG%EC%9B%8C%EB%84%88%EB%B9%84+(%EA%B0%80%EC%95%BCG)+%EA%B7%B8%EB%95%8C+%EA%B7%B8+%EC%88%9C%EA%B0%84+%EA%B7%B8%EB%8C%80%EB%A1%9C+(%EA%B7%B8%EA%B7%B8%EA%B7%B8)'
-driver.get(url)
-time.sleep(10)
-# span 태그 찾기
-span_tag = driver.find_elements(
-    By.CSS_SELECTOR, 'span#text.style-scope.ytd-thumbnail-overlay-time-status-renderer')
-seq = 0
-# span 태그 안의 값을 가져오기
-for tag in span_tag:
-    value = tag.get_attribute('innerText')
-    if (len(value) >= 5):
-        seq += 1
-    else:
-        break
-print(seq)
+urls = {
+    '남자그룹': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=MG0000',
+    '여자그룹': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=FG0000',
+    '남자솔로': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=MS0000',
+    '여자솔로': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=FG0000'
+}
+
+driver.get(
+    'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=MG0000')
+
+for classify, url in urls.items():
+    driver.get(url)
+    more = driver.find_element(
+        By.CSS_SELECTOR, '#conts > div.ltcont > div.wrap_list_artistplus.d_artist_list > button > span > span')
+    for i in range(4):
+        more.click()
+        time.sleep(1)
+
+    time.sleep(2)
+    artist_numbers = []
+    a_tags = driver.find_elements(By.XPATH, '//div[@class="wrap_thumb"]/a')
+    artist_imgs_temp = driver.find_elements(
+        By.CSS_SELECTOR, 'div.artistplus > div.wrap_thumb > a > img')
+    # 작은 앨범 이미지 좀 더 큰 이미지는 replace를 사용해서 e/104/q -> e/416/q 으로 변환하면 됨
+    artist_imgs = [img.get_attribute('src') for img in artist_imgs_temp]
+
+    artist_names_temp = driver.find_elements(
+        By.CSS_SELECTOR, 'div.artistplus > div.wrap_info > dl > dt > a')
+    artist_names = [name.text for name in artist_names_temp]
+
+    for a_tag in a_tags:
+        href = a_tag.get_attribute('href')
+        artist_number = href.split("'")[1]
+        artist_numbers.append(artist_number)
+
+    artist_pages = [
+        f'https://www.melon.com/artist/song.htm?artistId={artist_num}#amp%3Bparams%5BorderBy%5D=POPULAR_SONG_LIST&amp%3Bparams%5BartistId%5D={artist_num}&amp%3Bpo=pageObj&amp%3BstartIndex=1&params%5BlistType%5D=A&params%5BorderBy%5D=POPULAR_SONG_LIST&params%5BartistId%5D={artist_num}&po=pageObj&startIndex=1' for artist_num in artist_numbers]
+
+    # 순위별 아티스트 페이지에서 가장 인기 있는 3곡 수집
+    # songs = []
+
+    # for page in artist_pages:
+    #     driver.get(page)
+    #     time.sleep(2)
+    #     page_data = driver.page_source
+    #     songs123 = []
+    #     for i in range(1, 4):
+    #         songs_temp = driver.find_element(
+    #             By.CSS_SELECTOR, f'#frm > div > table > tbody > tr:nth-child({i}) > td:nth-child(3) > div > div > a.fc_gray')
+    #         songs123.append(songs_temp.text)
+    #     songs.append(songs123)
+    songs = []
+
+    for page in artist_pages:
+        driver.get(page)
+        time.sleep(2)
+        page_data = driver.page_source
+        songs123 = []
+        for i in range(1, 4):
+            try:
+                songs_temp = driver.find_element(
+                    By.CSS_SELECTOR, f'#frm > div > table > tbody > tr:nth-child({i}) > td:nth-child(3) > div > div > a.fc_gray')
+                songs123.append(songs_temp.text)
+            except:
+                break  # 곡을 가져오는 과정에서 오류가 발생하면 반복문을 빠져나와서 다음 가수 페이지로 넘어갑니다.
+        songs.append(songs123)
+
+    with open(f'./team-1-project/data/{classify}.csv', 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(['Song', 'Name', 'Image'])
+        for data in zip(songs, artist_names, artist_imgs):
+            writer.writerow(data)
