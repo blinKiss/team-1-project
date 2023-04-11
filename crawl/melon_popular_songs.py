@@ -15,6 +15,7 @@ import urllib.parse
 from collections import OrderedDict
 
 urls = {
+    '종합': 'https://www.melon.com/chart/day/index.htm',
     '발라드': 'https://www.melon.com/chart/day/index.htm?classCd=GN0100',
     '댄스': 'https://www.melon.com/chart/day/index.htm?classCd=GN0200',
     '랩／힙합': 'https://www.melon.com/chart/day/index.htm?classCd=GN0300',
@@ -47,6 +48,7 @@ def get_chart_data(url, genre):
         album_img = tr.select_one('img[src*="/album/images/"]')
         album_img_temp = album_img['src']
         album_img_url = album_img_temp.replace('e/120/q', 'e/282/q')
+        # 원본은 split = url.rsplit('/', 6)[0]
         keyword = '{} {}'.format(artist, title)
         encoded_keyword = urllib.parse.quote(keyword)
         url2 = (
