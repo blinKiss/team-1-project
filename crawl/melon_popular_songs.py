@@ -24,6 +24,7 @@ urls = {
     '록／메탈': 'https://www.melon.com/chart/day/index.htm?classCd=GN0600',
     '트로트': 'https://www.melon.com/chart/day/index.htm?classCd=GN0700',
     '포크／블루스': 'https://www.melon.com/chart/day/index.htm?classCd=GN0800'
+    
 }
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
