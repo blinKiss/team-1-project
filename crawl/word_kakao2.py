@@ -29,7 +29,7 @@
 
 import pyphen
 
-text = "iamnotagirlnotyetawoman"
+text = ''
 dic = pyphen.Pyphen(lang='en')
 
 # 단어 분리
