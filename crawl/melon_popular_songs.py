@@ -18,31 +18,31 @@ import random
 
 urls = {
     '장르종합' : 'https://www.melon.com/chart/week/index.htm',
-    '국내종합' : 'https://www.melon.com/chart/week/index.htm?classCd=DM0000',
-    '해외종합' : 'https://www.melon.com/chart/week/index.htm?classCd=AB0000',
-    '국내_발라드' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0100',
-    '국내_댄스' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0200',
-    '국내_랩／힙합' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0300',
-    '국내_R&B／Soul' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0400',
-    '국내_인디음악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0500',
-    '국내_록／메탈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0600',
-    '국내_트로트' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0700',
-    '국내_포크／블루스': 'https://www.melon.com/chart/week/index.htm?classCd=GN0800',
-    '해외_POP' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0900',
-    '해외_록／메탈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1000',
-    '해외_일렉트로니카' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1100',
-    '해외_랩／힙합' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1200',
-    '해외_R&B／Soul' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1300',
-    '해외_포크／블루스／컨트리' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1400',
-    '그외_OST' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1500',
-    '그외_재즈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1700',
-    '그외_뉴에이지' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1800',
-    '그외_J-pop' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1900',
-    '그외_월드뮤직' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2000',
-    '그외_CCM' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2100',
-    '그외_어린이／태교' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2200',
-    '그외_종교음악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2300',
-    '그외_국악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2400',
+    # '국내종합' : 'https://www.melon.com/chart/week/index.htm?classCd=DM0000',
+    # '해외종합' : 'https://www.melon.com/chart/week/index.htm?classCd=AB0000',
+    # '국내_발라드' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0100',
+    # '국내_댄스' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0200',
+    # '국내_랩／힙합' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0300',
+    # '국내_R&B／Soul' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0400',
+    # '국내_인디음악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0500',
+    # '국내_록／메탈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0600',
+    # '국내_트로트' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0700',
+    # '국내_포크／블루스': 'https://www.melon.com/chart/week/index.htm?classCd=GN0800',
+    # '해외_POP' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0900',
+    # '해외_록／메탈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1000',
+    # '해외_일렉트로니카' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1100',
+    # '해외_랩／힙합' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1200',
+    # '해외_R&B／Soul' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1300',
+    # '해외_포크／블루스／컨트리' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1400',
+    # '그외_OST' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1500',
+    # '그외_재즈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1700',
+    # '그외_뉴에이지' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1800',
+    # '그외_J-pop' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1900',
+    # '그외_월드뮤직' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2000',
+    # '그외_CCM' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2100',
+    # '그외_어린이／태교' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2200',
+    # '그외_종교음악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2300',
+    # '그외_국악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2400'
     
 }
 
@@ -70,14 +70,14 @@ def get_chart_data(url, genre):
         album_img = tr.select_one('img[src*="/album/images/"]')
         album_img_temp = album_img['src']
         # album_img_url = album_img_temp.replace('e/120/q', 'e/282/q')
-        album_img_url = album_img_temp.rsplit('/',)
+        album_img_url = album_img_temp.rsplit('/', 6)[0]
         # 원본은 split = url.rsplit('/', 6)[0]
         keyword = '{} {}'.format(artist, title)
         encoded_keyword = urllib.parse.quote(keyword)
         url2 = (
             f'https://www.youtube.com/results?search_query={encoded_keyword}')
         driver.get(url2)
-        time.sleep(6)
+        time.sleep(7)
 
         # 재생시간 확인용
         span_tag = driver.find_elements(
@@ -114,16 +114,16 @@ def get_chart_data(url, genre):
         # print(links)
         youtube_link = 'https://www.youtube.com' + links[seq]
         # print(youtube_link)
-        chart_data.append([rank, artist, title,
+        chart_data.append([genre, rank, artist, title,
                            album, album_img_url, youtube_link])
 
     return chart_data
 
 
 def save_csv(chart_data):
-    with open('./team-1-project/data/{genre}.csv', 'w', encoding='utf-8-sig', newline='') as f:
+    with open('./team-1-project/data/popular_songs2.csv', 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['순위', '아티스트', '곡명', '앨범', '앨범이미지', '유튜브링크'])
+        writer.writerow(['장르', '순위', '아티스트', '곡명', '앨범', '앨범이미지', '유튜브링크'])
         writer.writerows(chart_data)
 
 
