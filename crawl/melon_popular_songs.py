@@ -17,36 +17,35 @@ import random
 
 
 urls = {
-    '장르종합' : 'https://www.melon.com/chart/week/index.htm',
-    # '국내종합' : 'https://www.melon.com/chart/week/index.htm?classCd=DM0000',
-    # '해외종합' : 'https://www.melon.com/chart/week/index.htm?classCd=AB0000',
-    # '국내_발라드' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0100',
-    # '국내_댄스' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0200',
-    # '국내_랩／힙합' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0300',
-    # '국내_R&B／Soul' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0400',
-    # '국내_인디음악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0500',
-    # '국내_록／메탈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0600',
-    # '국내_트로트' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0700',
-    # '국내_포크／블루스': 'https://www.melon.com/chart/week/index.htm?classCd=GN0800',
-    # '해외_POP' : 'https://www.melon.com/chart/week/index.htm?classCd=GN0900',
-    # '해외_록／메탈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1000',
-    # '해외_일렉트로니카' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1100',
-    # '해외_랩／힙합' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1200',
-    # '해외_R&B／Soul' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1300',
-    # '해외_포크／블루스／컨트리' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1400',
-    # '그외_OST' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1500',
-    # '그외_재즈' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1700',
-    # '그외_뉴에이지' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1800',
-    # '그외_J-pop' : 'https://www.melon.com/chart/week/index.htm?classCd=GN1900',
-    # '그외_월드뮤직' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2000',
-    # '그외_CCM' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2100',
-    # '그외_어린이／태교' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2200',
-    # '그외_종교음악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2300',
-    # '그외_국악' : 'https://www.melon.com/chart/week/index.htm?classCd=GN2400'
-    
+    '장르종합': 'https://www.melon.com/chart/week/index.htm',
+    '국내종합': 'https://www.melon.com/chart/week/index.htm?classCd=DM0000',
+    '해외종합': 'https://www.melon.com/chart/week/index.htm?classCd=AB0000',
+    '국내_발라드': 'https://www.melon.com/chart/week/index.htm?classCd=GN0100',
+    '국내_댄스': 'https://www.melon.com/chart/week/index.htm?classCd=GN0200',
+    '국내_랩／힙합': 'https://www.melon.com/chart/week/index.htm?classCd=GN0300',
+    '국내_R&B／Soul': 'https://www.melon.com/chart/week/index.htm?classCd=GN0400',
+    '국내_인디음악': 'https://www.melon.com/chart/week/index.htm?classCd=GN0500',
+    '국내_록／메탈': 'https://www.melon.com/chart/week/index.htm?classCd=GN0600',
+    '국내_트로트': 'https://www.melon.com/chart/week/index.htm?classCd=GN0700',
+    '국내_포크／블루스': 'https://www.melon.com/chart/week/index.htm?classCd=GN0800',
+    '해외_POP': 'https://www.melon.com/chart/week/index.htm?classCd=GN0900',
+    '해외_록／메탈': 'https://www.melon.com/chart/week/index.htm?classCd=GN1000',
+    '해외_일렉트로니카': 'https://www.melon.com/chart/week/index.htm?classCd=GN1100',
+    '해외_랩／힙합': 'https://www.melon.com/chart/week/index.htm?classCd=GN1200',
+    '해외_R&B／Soul': 'https://www.melon.com/chart/week/index.htm?classCd=GN1300',
+    '해외_포크／블루스／컨트리': 'https://www.melon.com/chart/week/index.htm?classCd=GN1400',
+    '그외_OST': 'https://www.melon.com/chart/week/index.htm?classCd=GN1500',
+    '그외_재즈': 'https://www.melon.com/chart/week/index.htm?classCd=GN1700',
+    '그외_뉴에이지': 'https://www.melon.com/chart/week/index.htm?classCd=GN1800',
+    '그외_J-pop': 'https://www.melon.com/chart/week/index.htm?classCd=GN1900',
+    '그외_월드뮤직': 'https://www.melon.com/chart/week/index.htm?classCd=GN2000',
+    '그외_CCM': 'https://www.melon.com/chart/week/index.htm?classCd=GN2100',
+    '그외_어린이／태교': 'https://www.melon.com/chart/week/index.htm?classCd=GN2200',
+    '그외_종교음악': 'https://www.melon.com/chart/week/index.htm?classCd=GN2300',
+    '그외_국악': 'https://www.melon.com/chart/week/index.htm?classCd=GN2400'
 }
 
-sleep_time = random.uniform(2,5)
+sleep_time = random.uniform(7, 9)
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
@@ -65,7 +64,8 @@ def get_chart_data(url, genre):
         # artist_set = set(artist_temp)
         artist = ', '.join(artist_temp2)
         # print(artist)
-        title = tr.select_one('.ellipsis.rank01').text.strip()
+        title = tr.select_one('.ellipsis.rank01 a').text.strip()
+        # print(title)
         album = tr.select_one('.ellipsis.rank03').text.strip()
         album_img = tr.select_one('img[src*="/album/images/"]')
         album_img_temp = album_img['src']
@@ -77,7 +77,7 @@ def get_chart_data(url, genre):
         url2 = (
             f'https://www.youtube.com/results?search_query={encoded_keyword}')
         driver.get(url2)
-        time.sleep(7)
+        time.sleep(sleep_time)
 
         # 재생시간 확인용
         span_tag = driver.find_elements(
@@ -92,21 +92,19 @@ def get_chart_data(url, genre):
                 # 길이의 값이 5보다 크면 1시간 이상이므로 seq 1 증가
                 if (len(value) > 5):
                     seq += 1
-                # 10:00 이 넘는 공식영상(MV)이 있어서 15분 이상만 걸러지도록 추가 
+                # 10:00 이 넘는 공식영상(MV)이 있어서 15분 이상만 걸러지도록 추가
                 if (len(value) == 5):
-                    if(int(value[0:2]) > 15):
+                    if (int(value[0:2]) > 15):
                         seq += 1
                 else:
                     break
-
-            
 
         page_source = driver.page_source
         pattern = re.compile(r'\/watch\?v=[-\w]+')  # 정규식 신기함
         links = pattern.findall(page_source)
         # watch 뒤에 오는 주소가 asd와 asd\qwe 이런 경우가 있는데 정규식을 사용하면 둘 다 asd만 걸러지기에
         # 중복 값이 생기므로 제거 필요
-        # list(set())을 썼더니 자동으로 정렬이 되어 쓰지않고 
+        # list(set())을 썼더니 자동으로 정렬이 되어 쓰지않고
         # 대신 데이터 프레임으로 변환 후 drop_duplicates().tolist() 사용
         # links = list(set(links))
         df = pd.DataFrame(links, columns=['link'])
@@ -121,7 +119,7 @@ def get_chart_data(url, genre):
 
 
 def save_csv(chart_data):
-    with open('./team-1-project/data/popular_songs2.csv', 'w', encoding='utf-8', newline='') as f:
+    with open('./team-1-project/data/popular_songs.csv', 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['장르', '순위', '아티스트', '곡명', '앨범', '앨범이미지', '유튜브링크'])
         writer.writerows(chart_data)

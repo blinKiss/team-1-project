@@ -26,7 +26,7 @@ kor = '[가-힣]+'
 # received = input("오늘 당신의 기분은 어떤가요?")
 # received = "신동환은 hoegi 김유리는 hyehwa"
 # received = "heal the world make it a better place for you and for me and the in time human race"
-
+# received = "althoughloninesshasalwaysbeenafriendofmine"
 received = '''
 "There's a place in your heart
 And I know that it is love
@@ -48,15 +48,18 @@ if re.search(eng, received):
     translator = googletrans.Translator()
     sentence_tr = translator.translate(e2, dest='ko').text
     words_tr = sentence_tr.split()
+    print(words_tr)
     # print(words_tr)
     driver.get(url)
-    
-    text_box = driver.find_element(By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
+
+    text_box = driver.find_element(
+        By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
     # text_box.click()
     text_box.send_keys(sentence_tr)
     time.sleep(1)
-    send_box = driver.find_element(By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
-    send_box.click()    
+    send_box = driver.find_element(
+        By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
+    send_box.click()
     time.sleep(2)
 
     html_data = driver.page_source
@@ -64,11 +67,11 @@ if re.search(eng, received):
     score_list = soup.select('.list_result > li')
     scores_tr = []
     for score in score_list:
-        temp = ('{} : {}'.format(score.select_one('.txt_message').get_text(), score.select_one('.txt_score').get_text()))
-        scores_tr.append(temp)        
-       
+        temp = ('{} : {}'.format(score.select_one(
+            '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
+        scores_tr.append(temp)
+
     print(scores_tr)
- 
 
 
 if re.search(kor, received):
@@ -79,13 +82,15 @@ if re.search(kor, received):
     words_kr = sentence_kr.split()
     # print(words_kr)
     driver.get(url)
-    
-    text_box = driver.find_element(By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
+
+    text_box = driver.find_element(
+        By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
     # text_box.click()
     text_box.send_keys(sentence_kr)
     time.sleep(1)
-    send_box = driver.find_element(By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
-    send_box.click()    
+    send_box = driver.find_element(
+        By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
+    send_box.click()
     time.sleep(2)
 
     html_data = driver.page_source
@@ -93,8 +98,8 @@ if re.search(kor, received):
     score_list = soup.select('.list_result > li')
     scores_kr = []
     for score in score_list:
-        temp = ('{} : {}'.format(score.select_one('.txt_message').get_text(), score.select_one('.txt_score').get_text()))
-        scores_kr.append(temp)        
-       
-    print(scores_kr)
+        temp = ('{} : {}'.format(score.select_one(
+            '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
+        scores_kr.append(temp)
 
+    print(scores_kr)
