@@ -33,7 +33,7 @@ And I know that it is love
 And this place it was brighter than tomorrow"
 '''
 
-# received = "korea는 한국 usa는 미국"
+# received = ""
 # received = received.replace('\'', '')
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -50,28 +50,31 @@ if re.search(eng, received):
     words_tr = sentence_tr.split()
     print(words_tr)
     # print(words_tr)
-    driver.get(url)
+    # driver.get(url)
 
-    text_box = driver.find_element(
-        By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
-    # text_box.click()
-    text_box.send_keys(sentence_tr)
-    time.sleep(1)
-    send_box = driver.find_element(
-        By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
-    send_box.click()
-    time.sleep(2)
+    
+    for i in words_tr:
+        driver.get(url)
+        text_box = driver.find_element(
+            By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
+        # text_box.click()
+        text_box.send_keys(i)
+        time.sleep(1)
+        send_box = driver.find_element(
+            By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
+        send_box.click()
+        time.sleep(2)
 
-    html_data = driver.page_source
-    soup = BeautifulSoup(html_data, 'html.parser')
-    score_list = soup.select('.list_result > li')
-    scores_tr = {}
-    for score in score_list:
-        # temp = ('{} : {}'.format(score.select_one(
-        #     '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
-        # scores_tr.append(temp)
-        scores_tr[score.select_one('.txt_message').get_text()] = score.select_one('.txt_score').get_text()
-        
+        html_data = driver.page_source
+        soup = BeautifulSoup(html_data, 'html.parser')
+        score_list = soup.select('.list_result > li')
+        scores_tr = {}
+        for score in score_list:
+            # temp = ('{} : {}'.format(score.select_one(
+            #     '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
+            # scores_tr.append(temp)
+            scores_tr[score.select_one('.txt_message').get_text()] = score.select_one('.txt_score').get_text()
+            
     print(scores_tr)
 
 
