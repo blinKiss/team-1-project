@@ -65,12 +65,13 @@ if re.search(eng, received):
     html_data = driver.page_source
     soup = BeautifulSoup(html_data, 'html.parser')
     score_list = soup.select('.list_result > li')
-    scores_tr = []
+    scores_tr = {}
     for score in score_list:
-        temp = ('{} : {}'.format(score.select_one(
-            '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
-        scores_tr.append(temp)
-
+        # temp = ('{} : {}'.format(score.select_one(
+        #     '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
+        # scores_tr.append(temp)
+        scores_tr[score.select_one('.txt_message').get_text()] = score.select_one('.txt_score').get_text()
+        
     print(scores_tr)
 
 
@@ -96,11 +97,17 @@ if re.search(kor, received):
     html_data = driver.page_source
     soup = BeautifulSoup(html_data, 'html.parser')
     score_list = soup.select('.list_result > li')
-    scores_kr = []
+    scores_kr = {}
     for score in score_list:
-        temp = ('{} : {}'.format(score.select_one(
-            '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
-        scores_kr.append(temp)
+        # temp = ('{} : {}'.format(score.select_one(
+        #     '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
+        # scores_kr.append(temp)
+        scores_tr[score.select_one('.txt_message').get_text()] = score.select_one('.txt_score').get_text()
 
-    print(scores_kr)
+    print(scores_tr)
 
+
+
+# df = pd.DataFrame({
+#     scores_kr[0]
+# })

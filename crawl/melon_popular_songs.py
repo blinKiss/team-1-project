@@ -110,6 +110,7 @@ def get_chart_data(url, genre):
         df = pd.DataFrame(links, columns=['link'])
         links = df['link'].drop_duplicates().tolist()
         # print(links)
+        # links[seq] 15분이 넘으면 seq가 증가해서 다음영상링크를 가져옴
         youtube_link = 'https://www.youtube.com' + links[seq]
         # print(youtube_link)
         chart_data.append([genre, rank, artist, title,
