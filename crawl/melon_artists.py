@@ -20,10 +20,14 @@ import urllib.parse
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
 urls = {
+    '전체' : 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=DP0000',
     '남자그룹': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=MG0000',
     '여자그룹': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=FG0000',
     '남자솔로': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=MS0000',
-    '여자솔로': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=FS0000'
+    '여자솔로': 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=FS0000',
+    '해외' : 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=AB0000',
+    '인디' : 'https://www.melon.com/artistplus/artistchart/index.htm?chartGubunCode=DP1800'
+    
 }
 
 driver.get(
@@ -84,7 +88,7 @@ for classify, url in urls.items():
         url2 = (
             f'https://www.youtube.com/results?search_query={encoded_keyword}')
         driver.get(url2)
-        time.sleep(7)
+        time.sleep(8)
 
         # print(keyword)
 

@@ -34,13 +34,12 @@ kor = '[가-힣]+'
 # And this place it was brighter than tomorrow"
 # '''
 received = '''
-단 한번, 단 한번 밖에 못해도
-그래도 널 사랑할 수 있을까
-내 전불 다 걸고
-내 앞에 남은 많은 행복을
-버리고 널 택할 자신 있을까
-어떤 물음 앞에서도 나의 대답은 항상 너야
+내가 좋아하는 걸 더 좋아했었죠
+괜한 투정 부려도 화낸 적 없었죠
+나쁜 일이 있어도 날 보면 환히 웃었던
+그대에게 아무것도 해준 게 없네요
 '''
+
 # received = ""
 # received = received.replace('\'', '')
 
@@ -67,12 +66,12 @@ if re.search(eng, received):
     # driver.get(url)
 
     scores_tr = {'id' : user_id, 'positive' : 0, 'negative' : 0, 'ambiguous' : 0, 'neutral' : 0}
-    for i in words_tr:
+    for word in words_tr:
         driver.get(url)
         text_box = driver.find_element(
             By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
         # text_box.click()
-        text_box.send_keys(i)
+        text_box.send_keys(word)
         time.sleep(1)
         send_box = driver.find_element(
             By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
@@ -101,36 +100,37 @@ scores_kr = {'positive' : 0, 'negative' : 0, 'ambiguous' : 0, 'neutral' : 0}
 if re.search(kor, received):
     print('한글 조아요')
     k = re.findall(kor, received)
-    k2 = ''.join(k)
+    k2 = ' '.join(k)
     sentence_kr = spell_checker.check(k2).checked
     words_kr = sentence_kr.split()
-    # print(words_kr)
-    driver.get(url)
+    print(words_kr)
+    for word in words_kr:
+        driver.get(url)
 
-    text_box = driver.find_element(
-        By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
-    # text_box.click()
-    text_box.send_keys(sentence_kr)
-    time.sleep(1)
-    send_box = driver.find_element(
-        By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
-    send_box.click()
-    time.sleep(2)
+        text_box = driver.find_element(
+            By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.box_item > div.wrap_chat > textarea')
+        # text_box.click()
+        text_box.send_keys(word)
+        time.sleep(1)
+        send_box = driver.find_element(
+            By.CSS_SELECTOR, '#mainContent > div > div.area_item.area_question > div.wrap_btn > button')
+        send_box.click()
+        time.sleep(2)
 
-    html_data = driver.page_source
-    soup = BeautifulSoup(html_data, 'html.parser')
-    score_list = soup.select('.list_result > li')
-    
-    for score in score_list:
-        # temp = ('{} : {}'.format(score.select_one(
-        #     '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
-        # scores_kr.append(temp)
-        # scores_tr[score.select_one('.txt_message').get_text()] = float(score.select_one('.txt_score').get_text())
-        # value = float(score.select_one('.txt_score').get_text())
-        scores_kr[score.select_one('.txt_message').get_text()] += Decimal(score.select_one('.txt_score').get_text())
+        html_data = driver.page_source
+        soup = BeautifulSoup(html_data, 'html.parser')
+        score_list = soup.select('.list_result > li')
+        
+        for score in score_list:
+            # temp = ('{} : {}'.format(score.select_one(
+            #     '.txt_message').get_text(), score.select_one('.txt_score').get_text()))
+            # scores_kr.append(temp)
+            # scores_tr[score.select_one('.txt_message').get_text()] = float(score.select_one('.txt_score').get_text())
+            # value = float(score.select_one('.txt_score').get_text())
+            scores_kr[score.select_one('.txt_message').get_text()] += Decimal(score.select_one('.txt_score').get_text())
 
 
-    # print(scores_kr)
+        # print(scores_kr)
 
 
 df = pd.read_csv('./team-1-project/data/user_querys/emotions.csv')

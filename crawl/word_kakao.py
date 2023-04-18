@@ -27,12 +27,12 @@ kor = '[가-힣]+'
 # received = "신동환은 hoegi 김유리는 hyehwa"
 # received = "heal the world make it a better place for you and for me and the in time human race"
 # received = "althoughloninesshasalwaysbeenafriendofmine"
-received = '''
-"There's a place in your heart
-And I know that it is love
-And this place it was brighter than tomorrow"
-'''
-
+# received = '''
+# "There's a place in your heart
+# And I know that it is love
+# And this place it was brighter than tomorrow"
+# '''
+received = '아버지가방에들어가신다'
 # received = "korea는 한국 usa는 미국"
 # received = received.replace('\'', '')
 
@@ -49,7 +49,6 @@ if re.search(eng, received):
     sentence_tr = translator.translate(e2, dest='ko').text
     words_tr = sentence_tr.split()
     print(words_tr)
-    # print(words_tr)
     driver.get(url)
 
     text_box = driver.find_element(
@@ -80,7 +79,7 @@ if re.search(kor, received):
     k2 = ''.join(k)
     sentence_kr = spell_checker.check(k2).checked
     words_kr = sentence_kr.split()
-    # print(words_kr)
+    print(words_kr)
     driver.get(url)
 
     text_box = driver.find_element(
