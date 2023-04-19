@@ -54,11 +54,10 @@ for key, value in urls.items():
         else:
             ages2.append(ages[4])
         count+=1
-        
-
+    
     titles = soup.select('.tit_area .tit')
     titles = [title.text for title in titles]
-    artists = soup.select('.dsc_area span:nth-child(1) a')
+    artists = soup.select('.dsc_area span:nth-child(1)')
     artists = [artist.text for artist in artists]
     albums = soup.select('.dsc_area span:nth-child(2) a')
     albums = [album.text for album in albums]
@@ -70,8 +69,7 @@ for key, value in urls.items():
     # index = url.find(".jpg")
     # ".jpg" 이후의 문자열을 제거합니다.
     # result = url[:index+4]
-#     print(len(gender),len(ages2),len(artists),len(titles),len(albums),len(album_imgs))
-    print(artists)
+    
     youtube_links = []
     for artist, title in zip(artists, titles):
         keyword = '{} {}'.format(artist, title)
@@ -117,7 +115,6 @@ for key, value in urls.items():
         # print(youtube_link)
         youtube_links.append(youtube_link)
         
-        print(len(youtube_links))
 
     df = pd.DataFrame({
                 '성별' : gender,
@@ -128,5 +125,5 @@ for key, value in urls.items():
                 '앨범이미지' : album_imgs,
                 '유튜브링크' : youtube_links
         })
-    df.to_csv('./team-1-project/data/sympathy/{key}_세대별_음악순위')
+    df.to_csv(f'./team-1-project/data/sympathy/{key}_세대별_음악순위.csv', index=False)
         

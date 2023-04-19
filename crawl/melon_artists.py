@@ -130,7 +130,7 @@ for classify, url in urls.items():
     # print(rank, '\n',artist_names, '\n',songs, '\n',artist_imgs, '\n',youtube_links)
 
     # 도중에 멈추는 경우가 있어 url별로 하나씩 저장 한 후
-    with open(f'./team-1-project/data/{classify}.csv', 'w', newline='', encoding='utf-8') as f:
+    with open(f'./team-1-project/data/artist/{classify}.csv', 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(['순위', '가수명', '인기곡', '앨범이미지', '유튜브링크'])
         for data in zip(rank, artist_names, songs, artist_imgs, youtube_links):
