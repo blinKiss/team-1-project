@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <h2>캔버스 예제1</h2>
+    <canvas id="myCanvas" width="300" height="300">
+        <p>브라우저에서 지원되지 않음</p>
+    </canvas>
+    
+    <script>
+        canvas1 = document.getElementById("myCanvas");
+        ctx1 = canvas1.getContext("2d");
+
+        ctx1.beginPath(); // 빈 경로
+        ctx1.strokeStyle = "red";
+        ctx1.rect(50, 50, 100, 100); // (50, 50) 점에서 (100, 100) 만큼 이동
+        ctx1.stroke();
+
+        ctx1.beginPath();
+        ctx1.fillStyle = "yellow";
+        ctx1.rect(100,100, 100, 100);
+        ctx1.fill();
+
+        ctx1.beginPath();
+        ctx1.font = "15px gulim";
+        ctx1.fillStyle = "blue";
+        ctx1.fillText("캔버스 시각화 예제", 150, 150);
+    </script>
+</body>
+</html>

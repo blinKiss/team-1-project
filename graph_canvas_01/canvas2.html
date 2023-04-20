@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>캔버스 예제2</h2>
+
+    <canvas id="myCanvas2" width="300" height="300"></canvas>
+
+    <script>
+        canvas2 = document.getElementById("myCanvas2");
+        ctx2 = canvas2.getContext("2d");
+
+        ctx2.beginPath();
+        ctx2.moveTo(150, 40);
+        ctx2.lineTo(40, 200);
+        ctx2.strokeStyle = "red";
+        ctx2.stroke();
+        
+        
+        ctx2.beginPath();
+        ctx2.moveTo(40, 200);
+        ctx2.lineTo(260, 200);
+        ctx2.strokeStyle = "green";
+        ctx2.stroke();
+
+
+        ctx2.beginPath();
+        ctx2.moveTo(260, 200);
+        ctx2.lineTo(150, 40);
+        ctx2.strokeStyle = "blue";
+        ctx2.stroke();
+    </script>
+    
+</body>
+</html>
