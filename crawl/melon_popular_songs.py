@@ -1,4 +1,3 @@
-import selenium
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
@@ -6,9 +5,7 @@ import time
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
-from itertools import repeat
 import csv
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
 import re
 import urllib.parse

@@ -125,5 +125,7 @@ for key, value in urls.items():
                 '앨범이미지' : album_imgs,
                 '유튜브링크' : youtube_links
         })
+    age_dict = {'10대': 10, '20대': 20, '30대': 30, '40대': 40, '50대': 50}
+    df['세대'] = df['세대'].replace(age_dict)
     df.to_csv(f'./team-1-project/data/sympathy/{key}_세대별_음악순위.csv', index=False)
         

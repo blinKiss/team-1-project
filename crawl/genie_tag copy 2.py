@@ -13,7 +13,7 @@ from collections import OrderedDict
 import random
 
 
-rnd_time = random.uniform(2, 4)
+rnd_time = random.uniform(2, 2.2)
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 url = 'https://www.genie.co.kr/playlist/tags#'
@@ -26,6 +26,7 @@ time.sleep(rnd_time)
 i = 0
 while True:
     tag_link_list = driver.find_elements(By.CSS_SELECTOR, '#showTagList > dl > dd > a')
+    print(len(tag_link_list))
     tag_name = tag_link_list[i].get_attribute('innerText')
     # print(tag_name)
     tag_link_list[i].click()
@@ -63,7 +64,7 @@ while True:
             album_names.append(album_name)
 
             
-        for k, (artist, title) in enumerate(zip(artist, title)):
+        for k, (artist, title) in enumerate(zip(artists, titles)):
             # 유튜브 링크 가져오기
             keyword = '{} {}'.format(artist, title)
             encoded_keyword = urllib.parse.quote(keyword)
@@ -96,16 +97,11 @@ while True:
             page_source = driver.page_source
             pattern = re.compile(r'\/watch\?v=[-\w]+')  # 정규식 신기함
             links = pattern.findall(page_source)
-            # watch 뒤에 오는 주소가 asd와 asd\qwe 이런 경우가 있는데 정규식을 사용하면 둘 다 asd만 걸러지기에
-            # 중복 값이 생기므로 제거 필요
-            # list(set())을 썼더니 자동으로 정렬이 되어 쓰지않고
-            # 대신 데이터 프레임으로 변환 후 drop_duplicates().tolist() 사용
-            # links = list(set(links))
+
             df = pd.DataFrame(links, columns=['link'])
             links = df['link'].drop_duplicates().tolist()
             
-            # print(links)
-            # links[seq] 15분이 넘으면 seq가 증가해서 다음영상링크를 가져옴
+
             youtube_link = 'https://www.youtube.com' + links[seq]
             
             youtube_links.append(youtube_link)
@@ -113,7 +109,7 @@ while True:
         driver.back()    
         time.sleep(rnd_time)
         print(album_imgs, artists, titles, album_names, youtube_links)
-        driver.back()
+        
         time.sleep(rnd_time)
         j += 1
         # driver.back()
