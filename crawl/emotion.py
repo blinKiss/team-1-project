@@ -30,19 +30,16 @@ driver.get(url)
 time.sleep(5)
 
 # 검색 후 최상단 결과 클릭
-mean = driver.find_element(By.CSS_SELECTOR, '#searchPage_entry > div > div:nth-child(1) > div.origin > a > strong')
+mean = driver.find_element(
+    By.CSS_SELECTOR, '#searchPage_entry > div > div:nth-child(1) > div.origin > a > strong')
 mean.click()
 time.sleep(5)
 
 # synonyms = driver.find_elements(By.CSS_SELECTOR, '#_id_section_thesaurus > div > div > div.map > div.slides > div > div > div.synonym.type10 > em')
-synonyms = driver.find_elements(By.CSS_SELECTOR, '#_id_section_thesaurus > div > div > div.map > div.slides > div > div.slides_content._slides_content._visible > div.synonym.type10 > em > a.blank')
+synonyms = driver.find_elements(
+    By.CSS_SELECTOR, '#_id_section_thesaurus > div > div > div.map > div.slides > div > div.slides_content._slides_content._visible > div.synonym.type10 > em > a.blank')
 # for syn in synonyms:
 
 for syn in synonyms:
     syn.click()
     time.sleep(2)
-    
-
-    
-
-    
