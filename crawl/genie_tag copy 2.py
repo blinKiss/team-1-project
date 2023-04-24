@@ -25,13 +25,13 @@ time.sleep(rnd_time)
 
 # tag_group = driver.find_elements(By.CSS_SELECTOR, '#showTagList > dl > dd > a')
 
-i = 0
+i = 44
 while True:
     tag_link_list = driver.find_elements(
         By.CSS_SELECTOR, '#showTagList > dl > dd > a')
     if (i == len(tag_link_list)):
         break
-    tag_name = tag_link_list[i].get_attribute('innerText')
+    tag_name = tag_link_list[i].get_attribute('innerText').replace('/', '／')
     # print(tag_name)
     tag_link_list[i].click()
     time.sleep(rnd_time)
@@ -47,6 +47,7 @@ while True:
     titles = []
     album_names = []
     youtube_links = []
+    
     # 플레이리스트 5개의 곡만 뽑아오기(곡 수 약 100개 이하)
     while j < 5:
         playlist = driver.find_elements(
@@ -71,7 +72,15 @@ while True:
             titles.append(title)
             album_names.append(album_name)
 
-        for k, (artist, title) in enumerate(zip(artists, titles)):
+        
+
+        print('길이 확인\n아티스트 : {}, 곡명 : {}, 앨범명 : {}, 앨범이미지 : {}, 유튜브링크 : {}'.format(len(artists),len(titles),len(album_names),len(album_names),len(youtube_links)))
+        driver.back()
+        # time.sleep(rnd_time)
+        # print(album_imgs, artists, titles, album_names, youtube_links)
+        time.sleep(rnd_time)
+        j += 1
+    for k, (artist, title) in enumerate(zip(artists, titles)):
             # 유튜브 링크 가져오기
             keyword = '{} {}'.format(artist, title)
             encoded_keyword = urllib.parse.quote(keyword)
@@ -114,13 +123,16 @@ while True:
             youtube_links.append(youtube_link)
             driver.back()
 
-        driver.back()
-        time.sleep(rnd_time)
-        # print(album_imgs, artists, titles, album_names, youtube_links)
 
-        time.sleep(rnd_time)
-        j += 1
+    
+    df = pd.DataFrame({
+        '아티스트' : artists,
+        '곡명' : titles,
+        '앨범명' : album_names,
+        '앨범이미지' : album_imgs,
+        '유튜브링크' : youtube_links
+    })
         # driver.back()
     # {태그네임}으로 파일 추가
-
+    df.to_csv(f'./team-1-project/data/tags/{tag_name}.csv', index=False)
     driver.back()

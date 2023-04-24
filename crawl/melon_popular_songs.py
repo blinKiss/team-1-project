@@ -60,6 +60,10 @@ def get_chart_data(url, genre):
         artist_temp2 = list(OrderedDict.fromkeys(artist_temp))
         # artist_set = set(artist_temp)
         artist = ', '.join(artist_temp2)
+        # 기본적으로 a태그에 가수명이 입력되어있지만
+        # Various Artists 의 경우 a태그가 없고 그냥 텍스트만 적혀있어서 추가해줌
+        if (artist == ''):
+            artist = 'Various Artists'
         # print(artist)
         title = tr.select_one('.ellipsis.rank01 a').text.strip()
         # print(title)
