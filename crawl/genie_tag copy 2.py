@@ -25,7 +25,7 @@ time.sleep(rnd_time)
 
 # tag_group = driver.find_elements(By.CSS_SELECTOR, '#showTagList > dl > dd > a')
 
-i = 44
+i = 129
 while True:
     tag_link_list = driver.find_elements(
         By.CSS_SELECTOR, '#showTagList > dl > dd > a')
