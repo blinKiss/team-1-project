@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>멜런 따라하기</title>
-    
-    
+
+
 </head>
 
 <style>
     .container {
-      margin-top: 5rem;
-      margin-bottom: 5rem;
-      margin-left: 5rem;
-      display: flex;
-      flex-wrap: wrap;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        margin-left: 5rem;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     ul {
@@ -23,18 +24,18 @@
         flex-direction: row;
         list-style: none;
     }
-      
+
     li {
-    margin-right: 10px;
+        margin-right: 10px;
     }
 
-    .container > div > div {
+    .container>div>div {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
     }
 
-    .container > div > div > span {
+    .container>div>div>span {
         display: inline-block;
         width: calc(10rem - 1rem);
     }
@@ -45,72 +46,75 @@
         <div>
             <div>
                 <span>종합</span>
-                    <ul>
-                        <li><a href="/total_genre"><span>장르종합</span></a></li>
-                        <li><a href="/total_kor"><span>국내종합</span></a></li>
-                        <li><a href="/total_foreign"><span>해외종합</span></a></li>
-                    </ul>
+                <ul>
+                    <li><a href="/total_genre"><span>장르종합</span></a></li>
+                    <li><a href="/total_kor"><span>국내종합</span></a></li>
+                    <li><a href="/total_foreign"><span>해외종합</span></a></li>
+                </ul>
             </div>
 
             <div>
                 <span>한국대중음악</span>
-                
-                    <ul>
-                        <li><a href="/kor_ballad"><span>발라드</span></a></li>
-                        <li><a href="/kor_dance"><span>댄스</span></a></li>
-                        <li><a href="/kor_rap_hiphop"><span>랩/힙합</span></a></li>
-                        <li><a href="/kor_rnb_soul"><span>R&amp;B/Soul</span></a></li>
-                        <li><a href="/kor_indie"><span>인디음악</span></a></li>
-                        <li><a href="/kor_rock_metal"><span>록/메탈</span></a></li>
-                        <li><a href="/kor_trot"><span>트로트</span></a></li>
-                        <li><a href="/kor_folk_blues"><span>포크/블루스</span></a></li>
-                    </ul>
-            </div>    
+
+                <ul>
+                    <li><a href="/kor_ballad"><span>발라드</span></a></li>
+                    <li><a href="/kor_dance"><span>댄스</span></a></li>
+                    <li><a href="/kor_rap_hiphop"><span>랩/힙합</span></a></li>
+                    <li><a href="/kor_rnb_soul"><span>R&amp;B/Soul</span></a></li>
+                    <li><a href="/kor_indie"><span>인디음악</span></a></li>
+                    <li><a href="/kor_rock_metal"><span>록/메탈</span></a></li>
+                    <li><a href="/kor_trot"><span>트로트</span></a></li>
+                    <li><a href="/kor_folk_blues"><span>포크/블루스</span></a></li>
+                </ul>
+            </div>
 
             <div>
                 <span>해외POP음악</span>
-                
-                    <ul>
-                        <li><a href="/foreign_pop"><span>POP</span></a></li>
-                        <li><a href="/foreign_rock_metal"><span>록/메탈</span></a></li>
-                        <li><a href="/foreign_elec"><span>일렉트로니카</span></a></li>
-                        <li><a href="/foreign_rap_hiphop"><span>랩/힙합</span></a></li>
-                        <li><a href="/foreign_rnb_soul"><span>R&amp;B/Soul</span></a></li>
-                        <li><a href="/foreign_folk_blues_country"><span>포크/블루스/컨트리</span></a></li>
-                    </ul>
-            </div>    
+
+                <ul>
+                    <li><a href="/foreign_pop"><span>POP</span></a></li>
+                    <li><a href="/foreign_rock_metal"><span>록/메탈</span></a></li>
+                    <li><a href="/foreign_elec"><span>일렉트로니카</span></a></li>
+                    <li><a href="/foreign_rap_hiphop"><span>랩/힙합</span></a></li>
+                    <li><a href="/foreign_rnb_soul"><span>R&amp;B/Soul</span></a></li>
+                    <li><a href="/foreign_folk_blues_country"><span>포크/블루스/컨트리</span></a></li>
+                </ul>
+            </div>
 
             <div>
                 <span>그외인기장르</span>
-                
-                    <ul>
-                        <li><a href="/other_ost"><span>OST</span></a></li>
-                        <li><a href="/other_jazz"><span>재즈</span></a></li>
-                        <li><a href="/other_newage"><span>뉴에이지</span></a></li>
-                        <li><a href="/other_jpop"><span>J-pop</span></a></li>
-                        <li><a href="/other_worldmusic"><span>월드뮤직</span></a></li>
-                        <li><a href="/other_ccm"><span>CCM</span></a></li>
-                        <li><a href="/other_kids"><span>어린이/태교</span></a></li>
-                        <li><a href="/other_religion"><span>종교음악</span></a></li>
-                        <li><a href="/other_gugak"><span>국악</span></a></li>
-                    </ul>
-            </div>    
-        </div>                
+
+                <ul>
+                    <li><a href="/other_ost"><span>OST</span></a></li>
+                    <li><a href="/other_jazz"><span>재즈</span></a></li>
+                    <li><a href="/other_newage"><span>뉴에이지</span></a></li>
+                    <li><a href="/other_jpop"><span>J-pop</span></a></li>
+                    <li><a href="/other_worldmusic"><span>월드뮤직</span></a></li>
+                    <li><a href="/other_ccm"><span>CCM</span></a></li>
+                    <li><a href="/other_kids"><span>어린이/태교</span></a></li>
+                    <li><a href="/other_religion"><span>종교음악</span></a></li>
+                    <li><a href="/other_gugak"><span>국악</span></a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </body>
 
+
+
 <script>
 
 
-// 각 링크 요소에 대한 처리 반복
-var links = document.querySelectorAll('a');
-for (var i = 0; i < links.length; i++) {
-  var link = links[i];
-  var genre = link.href.split('_')[1]; // href 속성값 중 / 뒤의 문자열 가져오기
-  var query = `SELECT * FROM songs WHERE genre = '${genre}'`;
-  // query 변수를 사용하여 데이터베이스 쿼리 실행
-  // ...
-}
+    // 각 링크 요소에 대한 처리 반복
+    var links = document.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        var genre = link.href.split('_')[1]; // href 속성값 중 / 뒤의 문자열 가져오기
+        var query = `SELECT * FROM songs WHERE genre = '${genre}'`;
+        // query 변수를 사용하여 데이터베이스 쿼리 실행
+        // ...
+    }
 </script>
+
 </html>
