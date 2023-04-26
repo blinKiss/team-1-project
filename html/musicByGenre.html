@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>장르별</title>
+</head>
+
+<body>
+    <h1>장르별</h1>
+
+    <!-- 모든 장르에 대해 반복 -->
+    <div th:each="genre : ${genres}">
+        <h2 th:text="${genre}"></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Artist</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 해당 장르의 음악 리스트에 대해 반복 -->
+                <tr th:each="music : ${musicMap[genre]}">
+                    <td th:text="${music.title}"></td>
+                    <td th:text="${music.artist}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
