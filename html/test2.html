@@ -47,9 +47,9 @@
             <div>
                 <span>종합</span>
                 <ul>
-                    <li><a href="/total_genre"><span>장르종합</span></a></li>
-                    <li><a href="/total_kor"><span>국내종합</span></a></li>
-                    <li><a href="/total_foreign"><span>해외종합</span></a></li>
+                    <li><a th:href="@{music/genre(장르종합)}"><span>장르종합</span></a></li>
+                    <li><a th:href="@{music/genre(국내종합)}"><span>국내종합</span></a></li>
+                    <li><a th:href="@{music/genre(해외종합)}"><span>해외종합</span></a></li>
                 </ul>
             </div>
 
@@ -57,14 +57,14 @@
                 <span>한국대중음악</span>
 
                 <ul>
-                    <li><a href="/kor_ballad"><span>발라드</span></a></li>
-                    <li><a href="/kor_dance"><span>댄스</span></a></li>
-                    <li><a href="/kor_rap_hiphop"><span>랩/힙합</span></a></li>
-                    <li><a href="/kor_rnb_soul"><span>R&amp;B/Soul</span></a></li>
-                    <li><a href="/kor_indie"><span>인디음악</span></a></li>
-                    <li><a href="/kor_rock_metal"><span>록/메탈</span></a></li>
-                    <li><a href="/kor_trot"><span>트로트</span></a></li>
-                    <li><a href="/kor_folk_blues"><span>포크/블루스</span></a></li>
+                    <li><a th:href="@{music/genre(국내_발라드)}"><span>발라드</span></a></li>
+                    <li><a th:href="@{music/genre(국내_댄스)}"><span>댄스</span></a></li>
+                    <li><a th:href="@{music/genre(국내_랩／힙합)}"><span>랩/힙합</span></a></li>
+                    <li><a th:href="@{music/genre(국내_R&B)}"><span>R&amp;B/Soul</span></a></li>
+                    <li><a th:href="@{music/genre(국내_인디음악)}"><span>인디음악</span></a></li>
+                    <li><a th:href="@{music/genre(국내_록／메탈)}"><span>록/메탈</span></a></li>
+                    <li><a th:href="@{music/genre(국내_트로트)}"><span>트로트</span></a></li>
+                    <li><a th:href="@{music/genre(국내_포크／블루스)}"><span>포크/블루스</span></a></li>
                 </ul>
             </div>
 
@@ -72,12 +72,12 @@
                 <span>해외POP음악</span>
 
                 <ul>
-                    <li><a href="/foreign_pop"><span>POP</span></a></li>
-                    <li><a href="/foreign_rock_metal"><span>록/메탈</span></a></li>
-                    <li><a href="/foreign_elec"><span>일렉트로니카</span></a></li>
-                    <li><a href="/foreign_rap_hiphop"><span>랩/힙합</span></a></li>
-                    <li><a href="/foreign_rnb_soul"><span>R&amp;B/Soul</span></a></li>
-                    <li><a href="/foreign_folk_blues_country"><span>포크/블루스/컨트리</span></a></li>
+                    <li><a th:href="@{music/genre(해외_POP)}"><span>POP</span></a></li>
+                    <li><a th:href="@{music/genre(해외_록／메탈)}"><span>록/메탈</span></a></li>
+                    <li><a th:href="@{music/genre(해외_일렉트로니카)}"><span>일렉트로니카</span></a></li>
+                    <li><a th:href="@{music/genre(해외_랩／힙합)}"><span>랩/힙합</span></a></li>
+                    <li><a th:href="@{music/genre(해외_R&B／Soul)}"><span>R&amp;B/Soul</span></a></li>
+                    <li><a th:href="@{music/genre(해외_포크／블루스／컨트리)}"><span>포크/블루스/컨트리</span></a></li>
                 </ul>
             </div>
 
@@ -85,15 +85,15 @@
                 <span>그외인기장르</span>
 
                 <ul>
-                    <li><a href="/other_ost"><span>OST</span></a></li>
-                    <li><a href="/other_jazz"><span>재즈</span></a></li>
-                    <li><a href="/other_newage"><span>뉴에이지</span></a></li>
-                    <li><a href="/other_jpop"><span>J-pop</span></a></li>
-                    <li><a href="/other_worldmusic"><span>월드뮤직</span></a></li>
-                    <li><a href="/other_ccm"><span>CCM</span></a></li>
-                    <li><a href="/other_kids"><span>어린이/태교</span></a></li>
-                    <li><a href="/other_religion"><span>종교음악</span></a></li>
-                    <li><a href="/other_gugak"><span>국악</span></a></li>
+                    <li><a th:href="@{music/genre(그외_OST)}"><span>OST</span></a></li>
+                    <li><a th:href="@{music/genre(그외_재즈)}"><span>재즈</span></a></li>
+                    <li><a th:href="@{music/genre(그외_뉴에이지)}"><span>뉴에이지</span></a></li>
+                    <li><a th:href="@{music/genre(그외_J-pop)}"><span>J-pop</span></a></li>
+                    <li><a th:href="@{music/genre(그외_월드뮤직)}"><span>월드뮤직</span></a></li>
+                    <li><a th:href="@{music/genre(그외_CCM)}"><span>CCM</span></a></li>
+                    <li><a th:href="@{music/genre(그외_어린이／태교)}"><span>어린이/태교</span></a></li>
+                    <li><a th:href="@{music/genre(그외_종교음악)}"><span>종교음악</span></a></li>
+                    <li><a th:href="@{music/genre(그외_국악)}"><span>국악</span></a></li>
                 </ul>
             </div>
         </div>
