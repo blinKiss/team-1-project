@@ -12,8 +12,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import urllib.parse
-import re
+
 # 10대 남
 woojin_artists = ["한로로", "김뜻돌", "박소은", "박소은", "박소은",
                   "모트", "모트", "쿠인",
@@ -34,7 +33,7 @@ woojin_titles = ["비틀비틀 짝짜꿍", "삐뽀삐뽀", "말리부오렌지",
                  "춘몽", "Proust (프루스트)", "에취! (AhChoo!)", "흑백나라의 엘리스", "나의 바다"]
 # print('10대 남 :', len(woojin_artists), len(woojin_titles))
 # 10대 녀
-gpt10f_artists = ["방탄소년단", "STAYC", "Brave Girls", "aespa", "BLACKPINK", "NCT 127",
+gpt_artists = ["방탄소년단", "STAYC", "Brave Girls", "aespa", "BLACKPINK", "NCT 127",
                "아이유", "OH MY GIRL", "ITZY", "TWICE", "방탄소년단", "BLACKPINK",
                "NCT DREAM", "IU", "SEVENTEEN", "TWICE", "MAMAMOO", "Red Velvet", "청하",
                "이하이", "ASTRO", "DAY6", "MAMAMOO", "ITZY", "TOMORROW X TOGETHER",
@@ -43,7 +42,7 @@ gpt10f_artists = ["방탄소년단", "STAYC", "Brave Girls", "aespa", "BLACKPINK
                "현아", "IZ*ONE", "방탄소년단", "아이유", "제니",
                "로제", "Etham", "태연"]
 
-gpt10f_titles = ["Butter", "ASAP", "치맛바람", "Next Level", "How You Like That", "Sticker",
+gpt_titles = ["Butter", "ASAP", "치맛바람", "Next Level", "How You Like That", "Sticker",
               "Celebrity", "Dolphin", "Mafia In The Morning", "Alcohol-Free", "Dynamite", "Lovesick Girls",
               "Hot Sauce", "Lilac", "Ready to love", "What is Love?", "HIP", "Psycho", "Bicycle",
               "Brave Enough", "ONE", "You were beautiful", "AYA", "달라달라", "0X1=LOVESONG (I Know I Love You) feat. Seori",
@@ -97,13 +96,13 @@ seulgi_titles = ["Hello", "Shake It Off", "Bad Guy", "Bad Romance", "Crazy in Lo
                  "이미슬픈사랑", "지나오다", "Hello", "나에게로의 초대", "안아줘", "나를 사랑했던 사람아", "좋니"]
 # print('20대 녀 :', len(seulgi_artists), len(seulgi_titles))
 # 30대 남
-me30m_artists = ["미(MIIII)", "한희정", "HYNN", "Acoustic Collabo", "Acoustic Collabo", "Kassy", "윤미래",
+me_artists = ["미(MIIII)", "한희정", "HYNN", "Acoustic Collabo", "Acoustic Collabo", "Kassy", "윤미래",
               "김보경", "Big mama", "임재범", "박화요비", "박화요비", "박화요비", "ZIA", "ZIA", "Brown eyes",
               "browneyed SOUL", "나얼", "바닷길", "박혜경", "박화요비", "양파", "양파", "양파", "영준",
               "윤하", "윤하", "FREE STYLE", "BROWN EYED GIRLS", "가비엔제이", "가비엔제이", "가비엔제이",
               "에이치7", "혜령", "투샤이", "프리스타일", "러브홀릭", "러브홀릭", "에일리", "박혜경"]
 
-me30m_titles = ["어디에 (Orchestra Ver.)", "잔혹한 여행", "시든 꽃에 물을 주듯", "설렘가득", "그대와 나, 설레임", "굿모닝 (Good Morning)", "검은 행복",
+me_titles = ["어디에 (Orchestra Ver.)", "잔혹한 여행", "시든 꽃에 물을 주듯", "설렘가득", "그대와 나, 설레임", "굿모닝 (Good Morning)", "검은 행복",
              "그댄가봐요", "연(捐)", "그대는 어디에", "어떤가요", "Lie", "그런 일은", "물론", "웃어줄래", "With Coffee",
              "LOVE BALLAD", "그대 떠난 뒤", "나만 부를 수 있는 노래", "빨간 운동화", "Promise", "령혼", "marry me", "L.O.V.E", "니 생각뿐 (feat. 개리)",
              "It's Beautiful", "My Song and...", "마음으로 하는 말 (Feat. Hanyi)", "Second", "Happiness", "Lie", "해바라기",
@@ -130,14 +129,14 @@ choi_titles = ["OK Not to Be", "Can't Hide (feat. Ashe)", "Sad Song (feat. TINI)
 # print('30대 녀 :', len(choi_artists), len(choi_titles))
 
 # 40대 남
-me40m_artists = ["김현성", "정인호", "서문탁", "소냐", "h", "서문탁", "한희정", "간미연", "애즈원",
+me2_artists = ["김현성", "정인호", "서문탁", "소냐", "h", "서문탁", "한희정", "간미연", "애즈원",
                "포지션", "최재훈", "양파", "BROWN EYED GIRLS", "JK 김동욱", "임현정",
                "얀", "J", "Big mama", "도원경", "Y2K", "Mariah Carey", "컬러핑크", "란", "페이지",
                "리즈", "유미", "유미", "이수영", "뱅크", "앤", "앤", "김형중",
                "이소은", "김동률", "애즈원", "정일영", "포지션", "야다",
                "이브", "izi", "서주경", "솔리드", "자자", "진주", "이지라이프"]
 
-me40m_titles = ["행복", "해요", "사슬", "눈물이나", "잊었니", "웃어도 눈물이나", "내일", "하얀 겨울 (Duet. 노을 나성호)", "너만은 모르길",
+me2_titles = ["행복", "해요", "사슬", "눈물이나", "잊었니", "웃어도 눈물이나", "내일", "하얀 겨울 (Duet. 노을 나성호)", "너만은 모르길",
               "마지막 약속", "비의 랩소디", "애송이의 사랑", "다가와서", "미련한 사랑", "사랑은 봄비처럼... 이별은 겨울비처럼",
               "심(心)", "어제처럼", "체념", "다시 사랑한다면", "헤어진 후에", "Angels Cry", "블루문", "어쩌다가", "이별이 오지 못하게",
               "그댄 행복에 살텐데", "별", "사랑은 언제나 목마르다", "라라라", "가질 수 없는 너", "혼자 하는 사랑", "아프고 아픈 이름", "그랬나봐",
@@ -179,7 +178,7 @@ daesik_titles = ["비처럼 음악처럼", "보낼 수 없는 사랑", "그런 �
                  "내 마음에 주단을 깔고", "잘못된 만남", "사랑했나봐", "난 널 사랑해", "그대 내게 다시"]
 
 # 50대 녀
-gpt50f_artists = ["소찬휘", "김연자", "김범룡", "임재현", "조용필", 
+gpt2_artists = ["소찬휘", "김연자", "김범룡", "임재현", "조용필", 
                 "조정현", "이승환", "박정수", "신해철", "김광석",
                 "신승훈", "김광석", "이문세", "김완선", "박정운", 
                 "푸른하늘", "박상민", "신승훈", "김민종", "조용필",
@@ -189,7 +188,7 @@ gpt50f_artists = ["소찬휘", "김연자", "김범룡", "임재현", "조용필
                 "이승환", "이승환", "윤종신", "이소라", "이소라",
                 "인순이", "인순이", "인순이", "조정현", "이은미"]
 
-gpt50f_titles = ["현명한 선택", "나는 울었네", "사랑의 진실", "사랑에 연습이 있었다면", "청춘", 
+gpt2_titles = ["현명한 선택", "나는 울었네", "사랑의 진실", "사랑에 연습이 있었다면", "청춘", 
                "그 아픔까지 사랑한거야", "너를 향한 마음", "그대 품에 잠들었으면", "슬픈 표정 하지 말아요", "먼지가 되어",
                "내일이 오면", "사랑했지만", "사랑은 늘 도망가", "삐에로는 우릴보고 웃지", "오늘 같은 밤이면", 
                "눈물나는 날에는", "해바라기", "미소속에 비친 그대", "착한 사랑", "이젠 그랬으면 좋겠네",
@@ -202,113 +201,72 @@ gpt50f_titles = ["현명한 선택", "나는 울었네", "사랑의 진실", "�
       
       
       
-
  
-# url = "https://vibe.naver.com/search?query="
 
-# male10, female10, male20, female20, male30, female30, male40, female40, male50, female50 = [], [],[], [],[], [],[], [],[], []  
 
-male_generation = {
-    101 : zip(woojin_artists, woojin_titles),
-    201 : zip(seunggyu_artists, seunggyu_titles),
-    301 : zip(me30m_artists, me30m_titles),
-    401 : zip(me40m_artists, me40m_titles),
-    501 : zip(daesik_artists, daesik_titles)
-}
+male10, female10, male20, female20, male30, female30, male40, female40, male50, female50 = [], [],[], [],[], [],[], [],[], []  
 
-female_generation = {
-    102 : zip(gpt10f_artists, gpt10f_titles),
-    202 : zip(seulgi_artists, seulgi_titles),
-    302 : zip(choi_artists, choi_titles),
-    402 : zip(seok_artists, seok_titles),
-    502 : zip(gpt50f_artists, gpt50f_titles)
 
-}
+    
+    
+    
 
-def gene_function(gene_dict):
+
+
+
+def get_chart_data(url, genre):
+    
+    chart_data = []
     driver = webdriver.Chrome(ChromeDriverManager().install())
-    for gene, artsongs in gene_dict.items():
-        chart_data = []
-        for artist, title in artsongs:
-            url = f'https://vibe.naver.com/search?query={artist} {title}'
-            driver.get(url)
-            time.sleep(1)
-            
-            # 팝업창 뜨면 끄기
-            try:
-                popup = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#app > div.modal > div > div > a.btn_close')))
-                popup.click()
-            except:
-                pass
-        
-            info = driver.find_element(By.CSS_SELECTOR, '#content > div:nth-child(3) > div > div > div > div.info_area > div.title > span.inner > a')
-            info.click()
-            time.sleep(1)
-            
-            # 텍스트가 '곡명\n비틀비틀 짝짜꿍' 이런식이어서 \n 이후의 텍스트만 가져오게함
-            n = '\n'
-            title_temp = driver.find_element(By.CSS_SELECTOR, '#content > div.summary_section > div > div.summary > div.text_area > h2 > span.title').text
-            title = title_temp[title_temp.index(n)+len(n):]
-            artist_temp = driver.find_element(By.CSS_SELECTOR, '#content > div.summary_section > div > div.summary > div.text_area > h2 > span.sub_title').text
-            artist = artist_temp[artist_temp.index(n)+len(n):]
-            album_name_temp = driver.find_element(By.CSS_SELECTOR, '#content > div:nth-child(4) > div > div.text_area > div > a').text
-            album_name = album_name_temp[album_name_temp.index(n)+len(n):]
-            album_img_temp = driver.find_element(By.CSS_SELECTOR, '#content > div.summary_section > div > div.summary_thumb > img').get_attribute('src')
-            j = '.jpg'
-            album_img = album_img_temp[:album_img_temp.index(j)+len(j)]
-            
-            keyword = '{} {}'.format(artist, title)
-            encoded_keyword = urllib.parse.quote(keyword)
-            url2 = (
-                f'https://www.youtube.com/results?search_query={encoded_keyword}')
-            driver.get(url2)
-            time.sleep(1)
-            page_source = driver.page_source
-            pattern = re.compile(r'\/watch\?v=[-\w]+')  # 정규식 신기함
-            links = pattern.findall(page_source)
-            # watch 뒤에 오는 주소가 asd와 asd\qwe 이런 경우가 있는데 정규식을 사용하면 둘 다 asd만 걸러지기에
-            # 중복 값이 생기므로 제거 필요
-            # list(set())을 썼더니 자동으로 정렬이 되어 쓰지않고
-            # 대신 데이터 프레임으로 변환 후 drop_duplicates().tolist() 사용
-            df = pd.DataFrame(links, columns=['link'])
-            links = df['link'].drop_duplicates().tolist()
-            youtube_link = 'https://www.youtube.com' + links[0]
-            
-            # 심심해서 가사도 가져와봄
-            try:
-                lyrics = driver.find_element(By.CSS_SELECTOR, '#content > div.end_section.section_lyrics > div > p').text
-            except:
-                pass
-            if (len(gene_dict) == 13):
-                    gender = '남성'
-            if (len(gene_dict) == 15):
-                    gender = '여성'
 
-                
-            chart_data.append([gender, gene, artist, title, album_name, album_img, 
-                    youtube_link, lyrics])
+    for artist, title in zip(woojin_artists, woojin_titles):
+        url = f'https://vibe.naver.com/search?query={artist} {title}'
+        driver.get(url)
+        time.sleep(1)
+        
+        # 팝업창 뜨면 끄기
+        try:
+            popup = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#app > div.modal > div > div > a.btn_close')))
+            popup.click()
+        except:
+            pass
+    
+        info = driver.find_element(By.CSS_SELECTOR, '#content > div:nth-child(3) > div > div > div > div.info_area > div.title > span.inner > a')
+        info.click()
+        time.sleep(2)
+        
+        # 텍스트가 '곡명\n비틀비틀 짝짜꿍' 이런식이어서 \n 이후의 텍스트만 가져오게함
+        n = '\n'
+        title_temp = driver.find_element(By.CSS_SELECTOR, '#content > div.summary_section > div > div.summary > div.text_area > h2 > span.title').text
+        title = title_temp[title_temp.index(n)+len(n):]
+        artist_temp = driver.find_element(By.CSS_SELECTOR, '#content > div.summary_section > div > div.summary > div.text_area > h2 > span.sub_title').text
+        artist = artist_temp[artist_temp.index(n)+len(n):]
+        
+        # 심심해서 가사도 해봄
+        try:
+            lyrics = driver.find_element(By.CSS_SELECTOR, '#content > div.end_section.section_lyrics > div > p').text
+        except:
+            pass
+
+        chart_data.append([artist, lyrics])
+
     return chart_data
 
 
 def save_csv(chart_data):
-
-    with open(f'./team-1-project/data/{gender}.csv', 'w', encoding='utf-8', newline='') as f:
+    with open(f'./team-1-project/data/new_songs.csv', 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['성별', '세대', '아티스트', '곡명', '앨범명', '앨범이미지', '유튜브링크'])
+        writer.writerow(['장르', '순위', '아티스트', '곡명', '앨범', '앨범이미지'])
         writer.writerows(chart_data)
 
-# def main():
-#     chart_data_all = []
-#     for genre, url in urls.items():
-#         chart_data = get_chart_data(url, genre)
-#         chart_data_all += chart_data
-#     save_csv(chart_data_all)
-#             with open('./team-1-project/data/popular_songs.csv', 'w', encoding='utf-8', newline='') as f:
-#                 writer = csv.writer(f)
-#                 writer.writerow(['장르', '순위', '아티스트', '곡명', '앨범', '앨범이미지', '유튜브링크'])
-#                 writer.writerows(chart_data)
-            
-print(gene_function(male_generation), gene_function(female_generation))
+
+def main():
+    chart_data_all = []
+    for genre, url in urls.items():
+        chart_data = get_chart_data(url, genre)
+        chart_data_all += chart_data
+    save_csv(chart_data_all)
 
 
-
+if __name__ == '__main__':
+    main()
