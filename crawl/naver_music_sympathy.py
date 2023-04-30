@@ -70,7 +70,8 @@ for key, value in urls.items():
     albums = soup.select('.dsc_area span:nth-child(2) a')
     # 앨범명에 개행문자 포함되어 있는 경우, 공백과 함께 있어서 둘 다 제거
     pattern = re.compile(r'\s*$')
-    albums = [re.sub(pattern, '', album.text.replace('\n', '')) for album in albums]
+    albums = [re.sub(pattern, '', album.text.replace('\n', ''))
+              for album in albums]
     album_imgs = soup.select('.data .photo img')
     album_imgs = [img['src'] for img in album_imgs]
     # 원본 파일주소로 바꾸고싶으면
@@ -157,7 +158,6 @@ for key, value in urls.items():
         df2 = pd.concat([df, df_temp])
         # 앨범명 중 개행문자, 공백 제거
         # df2['앨범명'] = df2['앨범명'].str.replace('\n', '')
-
 
         # 특정 가수 제거
         # df3 = df2.loc[~df2['아티스트'].str.contains('가수명')]

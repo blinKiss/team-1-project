@@ -8,9 +8,13 @@ import pandas as pd
 # # df = df.drop(columns='Unnamed: 0.1')
 # # df = df.drop(columns='Unnamed: 0')
 # # print(df)
-
 # df.to_csv('./team-1-project/data/sympathy/여성_세대별_음악순위.csv', index=False)
+# df = pd.read_csv('./team-1-project/data/popular_songs.csv')
+# print(df[df.isnull().any(axis=1)])
 
+df = pd.read_csv('./team-1-project/data/sympathy/여성_세대별_음악순위_네이바.csv')
+df2 = pd.read_csv('./team-1-project/data/sympathy/여성_세대별_음악순위_추가.csv')
 
-df = pd.read_csv('./team-1-project/data/popular_songs.csv')
-print(df[df.isnull().any(axis=1)])
+df3 = pd.concat([df, df2], ignore_index=True).drop_duplicates()
+# print(df3)
+df3.to_csv('./team-1-project/data/sympathy/여성_세대별_음악순위.csv', index=False)
