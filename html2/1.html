@@ -65,9 +65,11 @@
   </style>
 </head>
 
-<body>
+<body
+  style="background-image: url('./img/1.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-position: center center; background-size: cover;"
+  id="background-slide">
   <h1>안녕 토글아</h1>
-  <a href="https://naver.com">네이버 가자</a>
+  <a href=" https://naver.com">네이버 가자</a>
   <!-- HTML 코드 -->
   <div class="toggle-menu">
     <div class="toggle-menu-header">
@@ -92,7 +94,6 @@
 
 
   </div>
-
   <!-- JavaScript 코드 -->
   <script>
     const button = document.querySelector('.toggle-menu-button');
@@ -101,6 +102,14 @@
     button.addEventListener('click', () => {
       menuList.classList.toggle('show');
     });
+
+    var images = ["./img/1.jpg", "./img/2.jpg", "./img/3.jpg"];
+    var currentImageIndex = 0;
+    var backgroundSlide = document.getElementById("background-slide");
+    setInterval(function () {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      backgroundSlide.style.backgroundImage = "url('" + images[currentImageIndex] + "')";
+    }, 5000); // 5초마다 이미지 변경
   </script>
 </body>
 
