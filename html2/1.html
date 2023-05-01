@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    // JavaScript 코드
+const button = document.querySelector('.toggle-menu-button');
+const menuList = document.querySelector('.toggle-menu-list');
+
+button.addEventListener('click', () => {
+  menuList.classList.toggle('show');
+});
+
+</script>
+<style>
+    .toggle-menu {
+        position: relative;
+      }
+      
+      .toggle-menu-header {
+        display: flex;
+        justify-content: flex-end;
+      }
+      
+      .toggle-menu-button {
+        background-color: transparent;
+        border: none;
+        color: #333;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0;
+        text-decoration: underline;
+      }
+      
+      .toggle-menu-list {
+        display: none;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 30px;
+        width: 120px;
+        z-index: 1;
+      }
+      
+      .toggle-menu-list li {
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-top: none;
+      }
+      
+      .toggle-menu-list li:first-child {
+        border-top: 1px solid #eee;
+      }
+      
+      .toggle-menu-list a {
+        color: #333;
+        display: block;
+        padding: 8px 12px;
+        text-decoration: none;
+      }
+      
+      .toggle-menu-list a:hover {
+        background-color: #eee;
+      }
+</style>
+<body>
+    <div class="toggle-menu">
+        <div class="toggle-menu-header">
+          <button class="toggle-menu-button">메뉴 열기</button>
+        </div>
+        <ul class="toggle-menu-list">
+          <li><a href="#">메뉴 항목 1</a></li>
+          <li><a href="#">메뉴 항목 2</a></li>
+          <li><a href="#">메뉴 항목 3</a></li>
+          <li><a href="#">메뉴 항목 4</a></li>
+        </ul>
+      </div>
+    
+</body>
+</html>
