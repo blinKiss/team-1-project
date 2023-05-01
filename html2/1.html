@@ -1,86 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<script>
-    // JavaScript 코드
-const button = document.querySelector('.toggle-menu-button');
-const menuList = document.querySelector('.toggle-menu-list');
-
-button.addEventListener('click', () => {
-  menuList.classList.toggle('show');
-});
-
-</script>
-<style>
+  <meta charset="UTF-8">
+  <title>Toggle Menu Example</title>
+  <style>
+    /* CSS 코드 */
     .toggle-menu {
-        position: relative;
-      }
-      
-      .toggle-menu-header {
-        display: flex;
-        justify-content: flex-end;
-      }
-      
-      .toggle-menu-button {
-        background-color: transparent;
-        border: none;
-        color: #333;
-        cursor: pointer;
-        font-size: 14px;
-        padding: 0;
-        text-decoration: underline;
-      }
-      
-      .toggle-menu-list {
-        display: none;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        right: 0;
-        top: 30px;
-        width: 120px;
-        z-index: 1;
-      }
-      
-      .toggle-menu-list li {
-        background-color: #fff;
-        border: 1px solid #eee;
-        border-top: none;
-      }
-      
-      .toggle-menu-list li:first-child {
-        border-top: 1px solid #eee;
-      }
-      
-      .toggle-menu-list a {
-        color: #333;
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-      }
-      
-      .toggle-menu-list a:hover {
-        background-color: #eee;
-      }
-</style>
+      position: relative;
+    }
+
+    .toggle-menu-header {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .toggle-menu-button {
+      background-color: transparent;
+      border: none;
+      color: #333;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 0;
+      text-decoration: underline;
+    }
+
+    .toggle-menu-list {
+      display: none;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 30px;
+      width: 120px;
+      z-index: 1;
+    }
+
+    .toggle-menu-list li {
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-top: none;
+    }
+
+    .toggle-menu-list li:first-child {
+      border-top: 1px solid #eee;
+    }
+
+    .toggle-menu-list a {
+      color: #333;
+      display: block;
+      padding: 8px 12px;
+      text-decoration: none;
+    }
+
+    .toggle-menu-list a:hover {
+      background-color: #eee;
+    }
+
+    .show {
+      display: block;
+    }
+  </style>
+</head>
+
 <body>
-    <div class="toggle-menu">
-        <div class="toggle-menu-header">
-          <button class="toggle-menu-button">메뉴 열기</button>
+  <h1>안녕 토글아</h1>
+  <a href="https://naver.com">네이버 가자</a>
+  <!-- HTML 코드 -->
+  <div class="toggle-menu">
+    <div class="toggle-menu-header">
+      <button class="toggle-menu-button">메뉴 열기</button>
+    </div>
+
+    <div class="card border-light mb-3 toggle-menu-list" style="max-width: 1000px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="https://assets.stickpng.com/thumbs/61d183263a856e0004c6334a.png" class="profile rounded-start"
+            alt="...">
         </div>
-        <ul class="toggle-menu-list">
-          <li><a href="#">메뉴 항목 1</a></li>
-          <li><a href="#">메뉴 항목 2</a></li>
-          <li><a href="#">메뉴 항목 3</a></li>
-          <li><a href="#">메뉴 항목 4</a></li>
-        </ul>
+        <div class="col-md-8">
+          <div class="card-body">
+            <p class="card-text">닉네임 : <span sec:authentication="principal.username" class="text-black"></span></p>
+            <p class="card-text">이름 : <span sec:authentication="principal.username" class="text-black"></span></p>
+          </div>
+        </div>
       </div>
-    
+    </div>
+
+
+
+
+  </div>
+
+  <!-- JavaScript 코드 -->
+  <script>
+    const button = document.querySelector('.toggle-menu-button');
+    const menuList = document.querySelector('.toggle-menu-list');
+
+    button.addEventListener('click', () => {
+      menuList.classList.toggle('show');
+    });
+  </script>
 </body>
+
 </html>
