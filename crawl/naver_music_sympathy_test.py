@@ -1,3 +1,4 @@
+import oracledb
 # import selenium
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -139,37 +140,85 @@ for key, value in urls.items():
     df_temp['세대'] = df_temp['세대'].replace(age_dict)
 
     if (key == '남성'):
-        df = pd.read_csv('./team-1-project/data/sympathy/남성_세대별_음악순위.csv')
-        df2 = pd.concat([df, df_temp])
+        conn = oracledb.connect(user='jsp4', password='123456', dsn='192.168.0.156:1521/orcl')
+        curs = conn.cursor()
+
+        sql = "SELECT * FROM man_generation"
+        curs.execute(sql)
+
+        out_data = curs.fetchall()
+
+        df = pd.DataFrame(out_data)
+        df.columns = ['성별', '세대', '아티스트', '곡명', '앨범명', '앨범이미지', '유튜브링크']
+        df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트','곡명']]).all(axis=1)].dropna()
+        for _, row in df2.iterrows():
+            artist = row['아티스트']
+            song = row['곡명']
+            gender = row['성별']
+            generation = row['세대']
+            album = row['앨범명']
+            image = row['앨범이미지']
+            youtube_link = row['유튜브링크']
+            
+            print(artist, song)
+            sql2 = f'''
+                    INSERT INTO man_generation(gender, generation, artist, song_name, album_name, album_img, youtube)
+            	    VALUES ('{gender}', '{generation}','{artist}','{song}','{album}','{image}','{youtube_link}')
+                   '''
+                   
+            curs.execute(sql2)
+            conn.commit()
+
         # 앨범명 중 개행문자 제거
         # df2['앨범명'] = df2['앨범명'].str.replace('\n', '')
 
         # 특정 가수 제거
         # df3 = df2.loc[~df2['아티스트'].str.contains('가수명')]
+        
         # 유튜브 링크는 다를 수도 있어서 그것만 제외하고 중복값 선택 후 제거
-        df3 = df2.drop_duplicates(
-            subset=['성별', '세대', '아티스트', '곡명', '앨범명']).sort_values(by='세대')
+        # df_male = df2.drop_duplicates(
+        #     subset=['성별', '세대', '아티스트', '곡명', '앨범명']).sort_values(by='세대')
 
-        df3.to_csv(
-            f'./team-1-project/data/sympathy/{key}_세대별_음악순위_추가하기.csv', index=False)
+        # df3.to_csv(
+        #     f'./team-1-project/data/sympathy/{key}_세대별_음악순위_추가하기.csv', index=False)
 
     if (key == '여성'):
-        df = pd.read_csv('./team-1-project/data/sympathy/여성_세대별_음악순위.csv')
-        df2 = pd.concat([df, df_temp])
-        # 앨범명 중 개행문자, 공백 제거
-        # df2['앨범명'] = df2['앨범명'].str.replace('\n', '')
+        conn = oracledb.connect(user='jsp4', password='123456', dsn='192.168.0.156:1521/orcl')
+        curs = conn.cursor()
 
-        # 특정 가수 제거
-        # df3 = df2.loc[~df2['아티스트'].str.contains('가수명')]
+        sql = "SELECT * FROM woman_generation"
+        curs.execute(sql)
+
+        out_data = curs.fetchall()
+
+        df = pd.DataFrame(out_data)
+        df.columns = ['성별', '세대', '아티스트', '곡명', '앨범명', '앨범이미지', '유튜브링크']
+        df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트','곡명']]).all(axis=1)].dropna()
+        for _, row in df2.iterrows():
+            artist = row['아티스트']
+            song = row['곡명']
+            gender = row['성별']
+            generation = row['세대']
+            album = row['앨범명']
+            image = row['앨범이미지']
+            youtube_link = row['유튜브링크']
+            print(artist, song)
+            sql2 = f'''
+                    INSERT INTO woman_generation(gender, generation, artist, song_name, album_name, album_img, youtube)
+            	    VALUES ('{gender}', '{generation}', '{artist}', '{song}', '{album}', '{image}', '{youtube_link}')
+                   '''
+            curs.execute(sql2)
+            conn.commit()
         # 유튜브 링크는 다를 수도 있어서 그것만 제외하고 중복값 선택 후 제거
-        df3 = df2.drop_duplicates(
-            subset=['성별', '세대', '아티스트', '곡명', '앨범명']).sort_values(by='세대')
+        # df_female = df2.drop_duplicates(
+        #     subset=['성별', '세대', '아티스트', '곡명', '앨범명']).sort_values(by='세대')
 
-        df3.to_csv(
-            f'./team-1-project/data/sympathy/{key}_세대별_음악순위_추가하기.csv', index=False)
+        # df3.to_csv(
+        #     f'./team-1-project/data/sympathy/{key}_세대별_음악순위_추가하기.csv', index=False)
 
 
-
+curs.close()
+conn.close()
 
 # driver.quit()
 
@@ -179,3 +228,4 @@ for key, value in urls.items():
 # while True:
 #     schedule.run_pending()
 #     time.sleep(1)
+
