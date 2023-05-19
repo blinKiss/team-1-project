@@ -17,3 +17,9 @@ import re
 # for i, j in dictwo.items():
 #     for k in j:
 #         print(k[0], k[1])
+import re
+url = "https://search.pstatic.net/common?src=https://musicmeta-phinf.pstatic.net/album/008/332/8332476.jpg?type=r204Fll&v=20230316153006&type=os121_121"
+pat = 'type=r.*'
+modified_url = re.sub(r'type=r.*', 'type=r480', url).replace("https://search.pstatic.net/common?src=", "")
+print(modified_url)
+

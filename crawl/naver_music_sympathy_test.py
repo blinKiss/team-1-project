@@ -13,6 +13,8 @@ from bs4 import BeautifulSoup
 # import csv
 import re
 import urllib.parse
+from urllib.parse import unquote
+
 # from collections import OrderedDict
 import schedule
 import time
@@ -74,7 +76,10 @@ for key, value in urls.items():
     albums = [re.sub(pattern, '', album.text.replace('\n', ''))
               for album in albums]
     album_imgs = soup.select('.data .photo img')
-    album_imgs = [img['src'] for img in album_imgs]
+    
+    album_img_re = r"src=(.*?)&type=(.*?)$"
+    album_img_re2 = r"\1?type=r480"
+    album_imgs = [re.sub(r'type=r.*', 'type=r480', unquote(img['src'])).replace("https://search.pstatic.net/common?src=", "") for img in album_imgs]
     # 원본 파일주소로 바꾸고싶으면
     # url = "어쩌구.jpg%23423$43!@$!@$1"
     # ".jpg" 이후의 문자열 위치를 찾습니다.
@@ -160,13 +165,21 @@ for key, value in urls.items():
             image = row['앨범이미지']
             youtube_link = row['유튜브링크']
             
-            print(artist, song)
-            sql2 = f'''
-                    INSERT INTO man_generation(gender, generation, artist, song_name, album_name, album_img, youtube)
-            	    VALUES ('{gender}', '{generation}','{artist}','{song}','{album}','{image}','{youtube_link}')
-                   '''
-                   
-            curs.execute(sql2)
+            
+            sql2 = '''
+                INSERT INTO man_generation(gender, generation, artist, song_name, album_name, album_img, youtube)
+                VALUES (:gender, :generation, :artist, :song, :album, :image, :youtube_link)
+            '''
+            temp_data = {
+                'gender': gender,
+                'generation': generation,
+                'artist': artist,
+                'song': song,
+                'album': album,
+                'image': image,
+                'youtube_link': youtube_link
+            }
+            curs.execute(sql2, temp_data)
             conn.commit()
 
         # 앨범명 중 개행문자 제거
@@ -193,7 +206,9 @@ for key, value in urls.items():
 
         df = pd.DataFrame(out_data)
         df.columns = ['성별', '세대', '아티스트', '곡명', '앨범명', '앨범이미지', '유튜브링크']
+        
         df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트','곡명']]).all(axis=1)].dropna()
+        # 데이터프레임의 각 행을 반복하며 인덱스값을 사용하지 않는다(_,)
         for _, row in df2.iterrows():
             artist = row['아티스트']
             song = row['곡명']
@@ -202,12 +217,21 @@ for key, value in urls.items():
             album = row['앨범명']
             image = row['앨범이미지']
             youtube_link = row['유튜브링크']
-            print(artist, song)
-            sql2 = f'''
-                    INSERT INTO woman_generation(gender, generation, artist, song_name, album_name, album_img, youtube)
-            	    VALUES ('{gender}', '{generation}', '{artist}', '{song}', '{album}', '{image}', '{youtube_link}')
-                   '''
-            curs.execute(sql2)
+            # print(row)
+            sql2 = '''
+                INSERT INTO woman_generation(gender, generation, artist, song_name, album_name, album_img, youtube)
+                VALUES (:gender, :generation, :artist, :song, :album, :image, :youtube_link)
+            '''
+            temp_data = {
+                'gender': gender,
+                'generation': generation,
+                'artist': artist,
+                'song': song,
+                'album': album,
+                'image': image,
+                'youtube_link': youtube_link
+            }
+            curs.execute(sql2, temp_data)
             conn.commit()
         # 유튜브 링크는 다를 수도 있어서 그것만 제외하고 중복값 선택 후 제거
         # df_female = df2.drop_duplicates(
