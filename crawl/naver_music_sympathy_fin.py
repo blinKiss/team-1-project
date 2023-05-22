@@ -143,7 +143,7 @@ for key, value in urls.items():
     })
     age_dict = {'10대': 10, '20대': 20, '30대': 30, '40대': 40, '50대': 50}
     df_temp['세대'] = df_temp['세대'].replace(age_dict)
-
+    # df_temp['세대'] = df_temp['세대'].astype(int)
     if (key == '남성'):
         conn = oracledb.connect(user='jsp4', password='123456', dsn='192.168.0.156:1521/orcl')
         curs = conn.cursor()
@@ -155,7 +155,11 @@ for key, value in urls.items():
 
         df = pd.DataFrame(out_data)
         df.columns = ['성별', '세대', '아티스트', '곡명', '앨범명', '앨범이미지', '유튜브링크']
-        df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트','곡명']]).all(axis=1)].dropna()
+        df['세대'] = df['세대'].astype(float)
+        # df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트', '곡명']])]
+        df2 = pd.concat([df_temp, df, df])[df_temp.columns].drop_duplicates(subset=['세대', '아티스트', '곡명'], keep=False)
+
+        # print(df3)
         for _, row in df2.iterrows():
             artist = row['아티스트']
             song = row['곡명']
@@ -206,8 +210,13 @@ for key, value in urls.items():
 
         df = pd.DataFrame(out_data)
         df.columns = ['성별', '세대', '아티스트', '곡명', '앨범명', '앨범이미지', '유튜브링크']
-        
-        df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트','곡명']]).all(axis=1)].dropna()
+        df['세대'] = df['세대'].astype(float)
+        # df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트', '곡명']])]
+        df2 = pd.concat([df_temp, df, df])[df_temp.columns].drop_duplicates(subset=['세대', '아티스트', '곡명'], keep=False)
+        # df3 = df2[df2[['세대', '아티스트', '곡명']].isin(df_temp[['세대', '아티스트', '곡명']]).all(axis=1)]
+        # print(df2)
+
+        # print(df3)
         # 데이터프레임의 각 행을 반복하며 인덱스값을 사용하지 않는다(_,)
         for _, row in df2.iterrows():
             artist = row['아티스트']
