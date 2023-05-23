@@ -47,7 +47,7 @@ import pandas as pd
 conn = oracledb.connect(user='jsp4', password='123456', dsn='192.168.0.156:1521/orcl')
 curs = conn.cursor()
 
-sql = "SELECT * FROM man_generation"
+sql = "SELECT * FROM woman_generation"
 curs.execute(sql)
 
 out_data = curs.fetchall()

@@ -155,7 +155,7 @@ for key, value in urls.items():
 
         df = pd.DataFrame(out_data)
         df.columns = ['성별', '세대', '아티스트', '곡명', '앨범명', '앨범이미지', '유튜브링크']
-        df['세대'] = df['세대'].astype(float)
+        # df['세대'] = df['세대'].astype(float)
         # df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트', '곡명']])]
         df2 = pd.concat([df_temp, df, df])[df_temp.columns].drop_duplicates(subset=['세대', '아티스트', '곡명'], keep=False)
 
@@ -210,7 +210,7 @@ for key, value in urls.items():
 
         df = pd.DataFrame(out_data)
         df.columns = ['성별', '세대', '아티스트', '곡명', '앨범명', '앨범이미지', '유튜브링크']
-        df['세대'] = df['세대'].astype(float)
+        # df['세대'] = df['세대'].astype(float)
         # df2 = df_temp[~df_temp[['세대', '아티스트', '곡명']].isin(df[['세대', '아티스트', '곡명']])]
         df2 = pd.concat([df_temp, df, df])[df_temp.columns].drop_duplicates(subset=['세대', '아티스트', '곡명'], keep=False)
         # df3 = df2[df2[['세대', '아티스트', '곡명']].isin(df_temp[['세대', '아티스트', '곡명']]).all(axis=1)]
