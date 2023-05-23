@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<style>
+body {
+   font-family: Arial, sans-serif;
+   background-color: #f2f2f2;
+}
+
+button[type="submit"] {
+   width: 100px;
+   height: 40px;
+   background-color: #4caf50;
+   color: #fff;
+   border: none;
+   border-radius: 3px;
+   cursor: pointer;
+}
+
+.chat-content {
+   height: 350px;
+   overflow-y: scroll;
+}
+
+.line {
+   margin-top: 10px;
+   display: flex;
+}
+
+.chat-box {
+   width: 300px;
+   height: 40px;
+   margin-bottom: 10px;
+   padding: 5px;
+   border: 1px solid #ccc;
+   border-radius: 3px;
+}
+
+.mine {
+   margin-left: auto;
+}
+</style>
+
+<body>
+  <div class="chat-content">
+    <div class="line">
+      <span class="chat-box">안녕?</span>
+    </div>
+    <div class="line">
+      <span class="chat-box mine">안녕!</span>
+    </div>
+  </div>
+  <input class="chat-box" id="input">
+  <button type="submit" id="send">전송</button>
+  <script type="module">
+    import { Configuration, OpenAIApi } from 'https://cdn.skypack.dev/openai';
+
+    document.querySelector('#input').addEventListener('keydown', function(e){
+      if(e.key === 'Enter') {
+        e.preventDefault();
+        document.querySelector('#send').click();
+      }
+    });
+
+    document.querySelector('#send').addEventListener('click', function(){
+   // Disable the button
+   var sendButton = document.querySelector('#send');
+   sendButton.disabled = true;
+      var input = document.querySelector('#input').value;
+      var template = `<div class="line">
+        <span class="chat-box mine">${ input }</span>
+      </div>`
+      document.querySelector('.chat-content').insertAdjacentHTML('beforeend', template);
+      let chatContent = document.querySelector('.chat-content');
+      chatContent.scrollTop = chatContent.scrollHeight;
+
+      document.querySelector('#loading').style.display = "block"; // Display the loading message
+
+      const configuration = new Configuration({
+        apiKey: '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',
+      });
+      const openai = new OpenAIApi(configuration);
+
+      openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: "\""+input+"\"라는 문장에 대해 \"아무거나, 장르종합, 국내종합, 해외종합, 발라드, 댄스, 랩/힙합, R&B/Soul, 인디음악, 록/메탈, 트로트, 포크/블루스, POP, 록/메탈, 일렉트로니카, 랩/힙합, R&B/Soul, 포크/블루스/컨트리, OST, 재즈, 뉴에이지, J-pop, 월드뮤직, CCM, 어린이/태교, 종교음악, 국악\" 중에 가장 적절한 단어를 골라줘 한개만 알려줘, 단어 하나로답해줘",
+        temperature: 1,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      }).then((result)=>{
+        console.log(result.data.choices[0].text)
+var template = `<div class="line">
+      <span class="chat-box">
+        <a href="${result.data.choices[0].text}" target="_blank">${result.data.choices[0].text}</a>
+      </span>
+    </div>`
+        document.querySelector('.chat-content').insertAdjacentHTML('beforeend', template);
+        chatContent.scrollTop = chatContent.scrollHeight;
+      // Hide the loading message
+        document.querySelector('#loading').style.display = "none";
+      // Enable the button
+        sendButton.disabled = false;
+      //window.open(result.data.choices[0].text, '_blank');
+      })
+    })
+  </script>
+  
+  <div id="loading" style="display: none;">답변 중...</div>
+</body>
+</html>
