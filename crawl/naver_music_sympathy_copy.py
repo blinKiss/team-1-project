@@ -113,8 +113,10 @@ for key, value in urls.items():
             pass
 
         album_name_temp = driver.find_element(
-            By.CSS_SELECTOR, 'div.album_info_area > div.thumb_area > a')
-        album_name_temp.click()
+            By.CSS_SELECTOR, 'div.album_info_area > .thumb_area > a')
+        # 이유는 모르겠는데 click()함수가 안통해서 자바스크립트 실행 클릭 사용
+        # album_name_temp.click()
+        driver.execute_script("arguments[0].click();", album_name_temp)
         time.sleep(1)
         
         genre_name = driver.find_element(By.CSS_SELECTOR, 'div.summary > div.text_area > div.sub > span:nth-child(2)').text
@@ -177,7 +179,7 @@ for key, value in urls.items():
     df_temp['세대'] = df_temp['세대'].replace(age_dict)
 
     if (key == '남성'):
-        df = pd.read_csv('./team-1-project/data/sympathy/남성_세대별_음악순위.csv')
+        df = pd.read_csv('./team-1-project/data/sympathy/남성_세대별_음악순위_장르까찌.csv')
         df2 = pd.concat([df, df_temp])
         # 앨범명 중 개행문자 제거
         # df2['앨범명'] = df2['앨범명'].str.replace('\n', '')
@@ -189,10 +191,10 @@ for key, value in urls.items():
             subset=['성별', '세대', '장르', '아티스트', '곡명', '앨범명']).sort_values(by='세대')
 
         df3.to_csv(
-            f'./team-1-project/data/sympathy/{key}_세대별_음악순위_추가하기.csv', index=False)
+            f'./team-1-project/data/sympathy/{key}_세대별_음악순위_추가하기.csv', IndexError=False)
 
     if (key == '여성'):
-        df = pd.read_csv('./team-1-project/data/sympathy/여성_세대별_음악순위.csv')
+        df = pd.read_csv('./team-1-project/data/sympathy/여성_세대별_음악순위_장르까지.csv')
         df2 = pd.concat([df, df_temp])
         # 앨범명 중 개행문자, 공백 제거
         # df2['앨범명'] = df2['앨범명'].str.replace('\n', '')
